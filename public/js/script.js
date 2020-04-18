@@ -67,5 +67,8 @@ async function ajouterCitation(id_auteur) {
     const res = await fetch(PUT_API_URL, options);
     console.log('PUT: ' + res);
 
-    setTimeout(refreshDataFromJSON_API, 5 * 1000);
+    document.getElementById(`infos${id_auteur}`).textContent = 'Votre demande sera traiter dans le plus brève délai';
+    document.getElementById(`infos${id_auteur}`).style.color = 'green';
+
+    setTimeout(refreshDataFromJSON_API, 8 * 1000);
 }
