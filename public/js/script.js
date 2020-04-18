@@ -63,12 +63,12 @@ async function refreshDataFromJSON_API() {
         // const article = await ejs.renderFile('<%= include(article) %>', { auteur: jsonData[id] });
         // document.getElementById('row').innerHTML += article;
 
-        const compiled = ejs.compile(await (await fetch('./js/article.ejs')).text(), 'utf8');
+        const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
         const html = compiled({ auteur: jsonData[id] });
-        document.getElementById('row').innerHTML += html;
+        // document.getElementById('row').innerHTML += html;
 
-        const rendered = ejs.render('<%- include(article.ejs) %>', { auteur: jsonData[id] });
-        console.log(rendered);
+        // const rendered = ejs.render('<%- include(article) %>', { auteur: jsonData[id] });
+        // console.log(rendered);
 
         // let str = `<%- include(article, ${jsonData[id]}) %>`;
         // let fn = ejs.compile(str, { client: true });
@@ -83,5 +83,5 @@ async function refreshDataFromJSON_API() {
         // }); // returns rendered string
     }
 }
-
-setInterval(refreshDataFromJSON_API, 2 * 1000);
+refreshDataFromJSON_API();
+// setInterval(refreshDataFromJSON_API, 2 * 1000);
