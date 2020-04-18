@@ -29,11 +29,12 @@ const REQ_API_URL = 'https://jsonblob.com/api/jsonBlob/2d2fa0bf-81ae-11ea-acec-e
 
 async function RefreshingData() {
 
-    //Get (PUTED) JSON file    
-    let json_toPUT = {};
-    let json_REQ = {};
     try {
+
+        //Get (PUTED) JSON file    
+        let json_toPUT = {};
         json_toPUT = await (await fetch(PUT_API_URL)).json();
+        let json_REQ = {};
         json_REQ = await (await fetch(REQ_API_URL)).json();
 
         //REQ to database
@@ -66,72 +67,77 @@ async function RefreshingData() {
             const citation = await (await fetch(json_toPUT[ids[i]])).json();
 
             const sql = `INSERT INTO citations (id_auteur, citation) VALUES (${citation.id_auteur}, "${citation.citation}")`;
-            cnx.query(sql, (err, res) => {
+            cnx.query(sql, async(err, res) => {
                 if (err)
                     console.log('Error on cnx.query (insert): ' + err);
                 else {
-                    console.log('Success: 1 record inserted');
+
+                    // Clean (PUTED) JSON file 
+                    options = {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({})
+                    }
+
+                    res = await fetch(PUT_API_URL, options);
+
+                    console.log('Success: 1 record inserted/Cleanned');
                 }
             });
         }
 
 
-        // Upload JSON file
-        const sql_auteurs = `SELECT a.id_auteur, a.nom, c.id_citation, c.citation FROM auteurs AS a 
-                            LEFT JOIN citations AS c 
-                            ON a.id_auteur = c.id_auteur 
-                            ORDER BY a.id_auteur`;
-        cnx.query(sql_auteurs, async(err, res_auteurs) => {
-            if (err)
-                console.log('Error on cnx.query (SELECT * FROM auteurs): ' + err);
-            else {
 
-                const json_auteurs = {};
-                for (let i = 0, auteurID; i < res_auteurs.length; i++) {
-                    const citations = {};
-                    if (auteurID !== res_auteurs[i].id_auteur) {
-                        json_auteurs[res_auteurs[i].id_auteur] = {
-                            nom: res_auteurs[i].nom,
-                            citations: citations
-                        }
-
-                        auteurID = res_auteurs[i].id_auteur;
-                    }
-
-                    json_auteurs[res_auteurs[i].id_auteur].citations[res_auteurs[i].id_citation] = res_auteurs[i].citation;
-                }
-
-                let options = {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: JSON.stringify(json_auteurs)
-                }
-
-                let res = await fetch(GET_API_URL, options);
-
-                // Clean (PUTED) JSON file 
-                options = {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: JSON.stringify({})
-                }
-
-                res = await fetch(PUT_API_URL, options);
-                console.log('Success: Cleaned');
-
-                console.log('Success: API Uploaded');
-            }
-        });
 
 
     } catch (err) { console.log(err); }
 
 }
 
+async function uploadDBToJSON() {
+    // Upload JSON file
+    const sql_auteurs = `SELECT a.id_auteur, a.nom, c.id_citation, c.citation FROM auteurs AS a 
+    LEFT JOIN citations AS c 
+    ON a.id_auteur = c.id_auteur 
+    ORDER BY a.id_auteur`;
+    cnx.query(sql_auteurs, async(err, res_auteurs) => {
+        if (err)
+            console.log('Error on cnx.query (SELECT * FROM auteurs): ' + err);
+        else {
+
+            const json_auteurs = {};
+            for (let i = 0, auteurID; i < res_auteurs.length; i++) {
+                const citations = {};
+                if (auteurID !== res_auteurs[i].id_auteur) {
+                    json_auteurs[res_auteurs[i].id_auteur] = {
+                        nom: res_auteurs[i].nom,
+                        citations: citations
+                    }
+
+                    auteurID = res_auteurs[i].id_auteur;
+                }
+
+                json_auteurs[res_auteurs[i].id_auteur].citations[res_auteurs[i].id_citation] = res_auteurs[i].citation;
+            }
+
+            let options = {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(json_auteurs)
+            }
+
+            let res = await fetch(GET_API_URL, options);
+
+            console.log('Success: API Uploaded');
+        }
+    });
+}
+
 setInterval(RefreshingData, 3 * 1000);
+setInterval(uploadDBToJSON, 3 * 1000);

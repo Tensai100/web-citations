@@ -72,7 +72,8 @@ async function ajouterAuteur() {
     document.getElementById(`infos0`).textContent = 'Votre auteur sera ajouter dans le plus brève délai';
     document.getElementById(`infos0`).style.color = 'green';
 
-    setTimeout(refreshDataFromJSON_API, 8 * 1000);
+    setTimeout(refreshDataFromJSON_API, 7 * 1000);
+
 }
 
 
@@ -129,6 +130,5 @@ async function ajouterCitation(id_auteur) {
     document.getElementById(`infos${id_auteur}`).textContent = 'Votre demande sera traiter dans le plus brève délai';
     document.getElementById(`infos${id_auteur}`).style.color = 'green';
 
-    setTimeout(refreshDataFromJSON_API, 6 * 1000);
-    setTimeout(refreshDataFromJSON_API, 4 * 1000);
+    setTimeout(refreshDataFromJSON_API, 7 * 1000);
 }
