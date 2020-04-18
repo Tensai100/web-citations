@@ -10,29 +10,7 @@ async function refreshDataFromJSON_API() {
 
     let html = '';
     for (let id in jsonData) {
-        // const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
-
-        const compiled = ejs.compile(`<% const id = data['id'], auteur = data['auteur']  %>
-        <div class="cl-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <div class="why-edit-box">
-            <h3>
-                <%= auteur.nom %>
-            </h3>
-            <div class="citations">
-                <% for (let id_citation in auteur.citations){ %>
-                    <p>
-                        <%= auteur.citations[id_citation] %>
-                    </p>
-                    <% } %>
-            </div>
-    
-            <div class="form-group form">
-                <textarea id="citation<%= id %>" placeholder="Nouvelle citation..." class="form-control citationJS" rows="3"></textarea>
-                <p id="infos<%= id %>"></p>
-                <button type="button" class="btn btn-primary" onclick="ajouterCitation(<%= id %>)">Ajouter</button>
-            </div>
-        </div>
-    </div>`, 'utf8');
+        const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
         html += compiled({ data: { id: id, auteur: jsonData[id] } });
     }
     document.getElementById('row').innerHTML = html;
