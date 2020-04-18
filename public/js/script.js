@@ -63,7 +63,7 @@ async function refreshDataFromJSON_API() {
         // const article = await ejs.renderFile('<%= include(article) %>', { auteur: jsonData[id] });
         // document.getElementById('row').innerHTML += article;
 
-        const compiled = ejs.compile(await (await fetch('./js/article.ejs', { mode: 'no-cors' })).text(), 'utf8');
+        const compiled = ejs.compile(await (await fetch('./js/article.ejs')).text(), 'utf8');
         const html = compiled({ auteur: jsonData[id] });
         document.getElementById('row').innerHTML += html;
 
