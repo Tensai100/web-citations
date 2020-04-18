@@ -107,4 +107,4 @@ async function RefreshingData() {
 
 }
 
-setInterval(RefreshingData, 5000);
+setInterval(RefreshingData, 3 * 1000);
