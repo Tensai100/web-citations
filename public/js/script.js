@@ -55,16 +55,24 @@ async function ajouterCitation(id_auteur) {
 }
 
 async function refreshDataFromJSON_API() {
-    jsonData = await (await fetch(GET_API_URL)).json();
+    const jsonData = await (await fetch(GET_API_URL)).json();
     // console.log(jsonData);
 
     for (let id in jsonData) {
         // console.log(jsonData[id]);
-        // const article = await ejs.renderFile('<%= include(article) %>', { auteur: jsonData[id] });
+        // const article = await ejs.renderFile('<%= include(article    ) %>', { auteur: jsonData[id] });
         // document.getElementById('row').innerHTML += article;
 
         const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
-        const html = compiled({ auteur: jsonData[id] });
+        const auteur = jsonData[id];
+        const html = compiled({
+            auteur: [{
+                nom: "name",
+                citations: {
+                    1: "test"
+                }
+            }]
+        });
         // document.getElementById('row').innerHTML += html;
 
         // const rendered = ejs.render('<%- include(article) %>', { auteur: jsonData[id] });
