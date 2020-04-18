@@ -77,7 +77,7 @@ async function ajouterAuteur() {
 
 
 async function ajouterCitation(id_auteur) {
-    //Name verifications
+    //Text verifications
     const citation = document.getElementById(`citation${id_auteur}`).value;
     const isHTML = RegExp.prototype.test.bind(/^(<([^>]+)>)$/i);
 
@@ -129,5 +129,6 @@ async function ajouterCitation(id_auteur) {
     document.getElementById(`infos${id_auteur}`).textContent = 'Votre demande sera traiter dans le plus brève délai';
     document.getElementById(`infos${id_auteur}`).style.color = 'green';
 
-    setTimeout(refreshDataFromJSON_API, 8 * 1000);
+    setTimeout(refreshDataFromJSON_API, 6 * 1000);
+    setTimeout(refreshDataFromJSON_API, 4 * 1000);
 }
