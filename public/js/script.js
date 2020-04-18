@@ -55,36 +55,19 @@ async function ajouterCitation(id_auteur) {
 }
 
 async function refreshDataFromJSON_API() {
-    const jsonData = await (await fetch(GET_API_URL)).json();
-    // console.log(jsonData);
+    const auteurs = await (await fetch(GET_API_URL)).json();
 
-    for (let id in jsonData) {
-        // console.log(jsonData[id]);
-        // const article = await ejs.renderFile('<%= include(article    ) %>', { auteur: jsonData[id] });
-        // document.getElementById('row').innerHTML += article;
+    const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
+    document.getElementById('row').innerHTML = compiled({ auteurs: [auteurs] });
 
-        const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
-        const auteurs = jsonData[id];
-        const html = compiled({
-            auteurs: [auteurs]
-        });
-        // document.getElementById('row').innerHTML += html;
+    // for (let id in jsonData) {
 
-        // const rendered = ejs.render('<%- include(article) %>', { auteur: jsonData[id] });
-        // console.log(rendered);
+    //     const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
+    //     const auteurs = jsonData[id];
+    //     const html = compiled({ auteurs: [auteurs] });
+    //     document.getElementById('row').innerHTML += html;
 
-        // let str = `<%- include(article, ${jsonData[id]}) %>`;
-        // let fn = ejs.compile(str, { client: true });
-
-        // fn(jsonData[id], null, function(path, d) { // include callback
-        //     console.log(d);
-        //     console.log(path);
-        //     // path -> 'file'
-        //     // d -> {person: 'John'}
-        //     // Put your code here
-        //     // Return the contents of file as a string
-        // }); // returns rendered string
-    }
+    // }
 }
-refreshDataFromJSON_API();
-// setInterval(refreshDataFromJSON_API, 2 * 1000);
+
+setInterval(refreshDataFromJSON_API, 5 * 1000);
