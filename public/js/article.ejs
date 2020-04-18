@@ -6,7 +6,7 @@
             </h3>
             <div class="citations">
                 <% for (let id_citation in auteur.citations){ %>
-                    <p class="alert alert-secondary">
+                    <p class="<%= " alert alert-dark " %>">
                         <%= auteur.citations[id_citation] %>
                     </p>
                     <% } %>

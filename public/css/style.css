@@ -19,10 +19,9 @@ h1{
 
 .why-edit-box {
     background: #fff;
-    padding: 32px;
+    padding: 24px;
     box-shadow: 0 0 10px 0 #ddd;
     margin: 24px 4px;
-    height: 680px
 }
 
 .why-edit-box h3 {
@@ -47,7 +46,7 @@ h1{
 
 .why-edit-box p {
     margin: 0;
-    margin-top: 0px;
+    margin-right: 4px;
     font-size: 15px;
     line-height: 26px;
     margin-top: 20px;

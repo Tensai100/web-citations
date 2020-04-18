@@ -25,15 +25,42 @@ cnx.connect((err) => {
 const POST_API_URL = 'https://jsonblob.com/api/jsonBlob';
 const PUT_API_URL = 'https://jsonblob.com/api/jsonBlob/06bb2426-809d-11ea-b0e8-29e6a8b89d11';
 const GET_API_URL = 'https://jsonblob.com/api/jsonBlob/16057a84-809d-11ea-b0e8-0f2c65fff2db';
+const REQ_API_URL = 'https://jsonblob.com/api/jsonBlob/2d2fa0bf-81ae-11ea-acec-e19a6b7d235b';
 
 async function RefreshingData() {
 
     //Get (PUTED) JSON file    
     let json_toPUT = {};
+    let json_REQ = {};
     try {
         json_toPUT = await (await fetch(PUT_API_URL)).json();
+        json_REQ = await (await fetch(REQ_API_URL)).json();
 
-        //Adding to database
+        //REQ to database
+        for (let id in json_REQ) {
+            const sql = await (await fetch(json_REQ[id])).json();
+
+            cnx.query(sql["req"], async(err, res) => {
+                if (err)
+                    console.log('Error on cnx.query (insert): ' + err);
+                else {
+                    // Clean (PUTED) JSON file 
+                    let options = {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({})
+                    }
+
+                    res = await fetch(REQ_API_URL, options);
+
+                    console.log('Success: ' + sql["req"] + '/Cleanned');
+                }
+            });
+        }
+        //Adding citations to database
         const ids = Object.getOwnPropertyNames(json_toPUT);
         for (let i = 0; i < ids.length; i++) {
             const citation = await (await fetch(json_toPUT[ids[i]])).json();
