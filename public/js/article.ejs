@@ -5,7 +5,11 @@
                 <%= auteur.nom %>
             </h3>
             <div class="citations">
-
+                <% for (let id_citation in auteur.citations){ %>
+                    <p>
+                        <%= auteur.citations[id_citation] %>
+                    </p>
+                    <% } %>
             </div>
 
             <div class="form-group form">

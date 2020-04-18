@@ -66,12 +66,7 @@ async function refreshDataFromJSON_API() {
         const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
         const auteurs = jsonData[id];
         const html = compiled({
-            auteurs: [{
-                nom: "name",
-                citations: {
-                    1: "test"
-                }
-            }]
+            auteurs: [auteurs]
         });
         // document.getElementById('row').innerHTML += html;
 
