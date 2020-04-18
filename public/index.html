@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/ejs.min.js"></script>
+
+    <title>Web citations</title>
+</head>
+
+<body>
+    <h1>Web citations</h1>
+
+    <section class="why-edit">
+        <div class="container-fluid">
+            <div id="row" class="row">
+                <div class="cl-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="why-edit-box">
+                        <h3>Heading</h3>
+                        <div class="citations">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                        </div>
+
+                        <div class="form-group form">
+                            <textarea id="citation1" placeholder="Nouvelle citation..." class="form-control citationJS" rows="3"></textarea>
+                            <p id="infos1"></p>
+                            <button type="button" class="btn btn-primary" onclick="ajouterCitation(1)">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cl-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="why-edit-box">
+                        <h3>Heading</h3>
+                        <div class="citations">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                        </div>
+
+                        <div class="form-group form">
+                            <textarea id="citation2" placeholder="Nouvelle citation..." class="form-control citationJS" rows="3"></textarea>
+                            <p id="infos2"></p>
+                            <button type="button" class="btn btn-primary" onclick="ajouterCitation(2)">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cl-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="why-edit-box">
+                        <h3>Heading</h3>
+                        <div class="citations">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                        </div>
+
+                        <div class="form-group form">
+                            <textarea placeholder="Nouvelle citation..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <button type="button" class="btn btn-primary">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cl-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="why-edit-box">
+                        <h3>Heading</h3>
+                        <div class="citations">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                        </div>
+
+                        <div class="form-group form">
+                            <textarea placeholder="Nouvelle citation..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <button type="button" class="btn btn-primary">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cl-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="why-edit-box">
+                        <h3>Heading</h3>
+                        <div class="citations">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                        </div>
+
+                        <div class="form-group form">
+                            <textarea placeholder="Nouvelle citation..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <button type="button" class="btn btn-primary">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cl-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="why-edit-box">
+                        <h3>Heading</h3>
+                        <div class="citations">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum elementum turpis. Suspendisse eu purus gravida, imperdiet urna ac, malesuada mauris. Vivamus pharetra libero orci.</p>
+                        </div>
+
+                        <div class="form-group form">
+                            <textarea placeholder="Nouvelle citation..." class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <button type="button" class="btn btn-primary">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

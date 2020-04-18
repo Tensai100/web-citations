@@ -1,0 +1,68 @@
+h1{
+    background: #f79418;
+    margin: 0;
+    padding: 12px;
+    color: white;
+    font-weight: lighter;
+    font-size: 3.2em;
+    text-align: center;
+}
+.why-edit {
+    background-image: url(../images/pentagon.jpg);
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 12px;
+    background: #aed8f0;
+}
+
+.why-edit-box {
+    background: #fff;
+    padding: 32px;
+    box-shadow: 0 0 10px 0 #ddd;
+    margin: 24px 4px;
+    height: 680px
+}
+
+.why-edit-box h3 {
+    margin: 0;
+    padding-top: 10px;
+    line-height: 1.1em;
+    color: #14365C;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+
+.why-edit-box h3::after {
+    position: absolute;
+    content: '';
+    height: 10px;
+    margin: 0 auto;
+    left: 0;
+    top: 40px;
+    width: 50%;
+    background: #f79418
+}
+
+.why-edit-box p {
+    margin: 0;
+    margin-top: 0px;
+    font-size: 15px;
+    line-height: 26px;
+    margin-top: 20px;
+}
+
+.why-edit .row .col-md-4 {
+    margin-bottom: 30px;
+}
+
+.citations {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.form>* {
+    margin: 0;
+    margin-top: 12px;
+}
