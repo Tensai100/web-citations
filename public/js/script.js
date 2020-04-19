@@ -10,11 +10,13 @@ async function refreshDataFromJSON_API() {
     const jsonData = await (await fetch(GET_API_URL)).json();
 
     let html = '';
-    for (let id in jsonData) {
-        const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
+    for (let id in jsonData) {// Creation des articles
+        compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/article.ejs')).text(), 'utf8');
         html += compiled({ data: { id: id, auteur: jsonData[id] } });
     }
-    const compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/ajout.ejs')).text(), 'utf8');
+
+    //Article nouveau auteur
+    compiled = ejs.compile(await (await fetch('https://tensai100.github.io/web-citations/public/js/ajout.ejs')).text(), 'utf8');
     html += compiled({ data: null });
     document.getElementById('row').innerHTML = html;
 }

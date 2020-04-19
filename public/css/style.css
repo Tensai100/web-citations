@@ -1,4 +1,4 @@
-h1{
+nav{
     background: #f79418;
     margin: 0;
     padding: 12px;
@@ -7,6 +7,11 @@ h1{
     font-size: 3.2em;
     text-align: center;
 }
+
+.btn{
+    margin: 4px 0;
+}
+
 .why-edit {
     background-image: url(../images/pentagon.jpg);
     background-attachment: fixed;
