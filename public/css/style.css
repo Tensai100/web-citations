@@ -20,6 +20,7 @@ nav{
     background-size: cover;
     padding: 12px;
     background: #aed8f0;
+    min-height: 612px;
 }
 
 .why-edit-box {
